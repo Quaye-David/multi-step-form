@@ -1,0 +1,156 @@
+/* Main Container */
+.multi-step {
+  width: 940px;
+  height: 600px;
+  margin: 0 auto;
+  background-color: var(--white);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  box-shadow: 0 25px 40px -20px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 274px 1fr;
+  gap: 80px;
+}
+
+/* Sidebar */
+.multi-step__sidebar {
+  background: url(../../assets/images/bg-sidebar-desktop.svg) no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  padding: 32px 32px;
+  height: 100%;
+}
+
+.multi-step__nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.multi-step__nav-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.multi-step__nav-list a {
+  text-decoration: none;
+}
+
+.multi-step__step-number {
+  width: 33px;
+  height: 33px;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.multi-step__step-info {
+  display: grid;
+  gap: 4px;
+}
+
+.multi-step__step-label {
+  color: var(--grey);
+  font-size: var(--fs-body-s);
+  text-transform: uppercase;
+}
+
+.multi-step__step-title {
+  color: var(--white);
+  font-weight: 500;
+  font-size: var(--fs-body-m);
+  text-transform: uppercase;
+}
+
+/* Content Area */
+.multi-step__content {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+}
+
+.multi-step__form-container {
+  height: 100%;
+}
+
+.multi-step__buttons {
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  background: var(--white);
+}
+
+.multi-step__button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.multi-step__button--back {
+  color: var(--grey);
+  background: transparent;
+  border: none;
+}
+
+.multi-step__button--next,
+.multi-step__button--confirm {
+  background: var(--denim);
+  color: var(--white);
+  border: none;
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+}
+
+.multi-step__nav-item--active .multi-step__step-number {
+  background-color: var(--light-blue);
+  color: var(--marine-blue);
+  border-color: transparent;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .multi-step {
+    width: 100%;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 32px;
+    position: relative;
+    transform: none;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+  }
+
+  .multi-step__sidebar {
+    background: url(../../assets/images/bg-sidebar-mobile.svg) no-repeat center/cover;
+    padding: 32px 24px;
+  }
+
+  .multi-step__nav-list {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .multi-step__step-info {
+    display: none;
+  }
+}
+

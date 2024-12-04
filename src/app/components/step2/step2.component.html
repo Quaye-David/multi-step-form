@@ -1,1 +1,70 @@
-<p>step2 works!</p>
+<div class="plan-selection">
+  <h2 class="plan-selection__title">Select your plan</h2>
+  <p class="plan-selection__description">You have the option of monthly or yearly billing.</p>
+
+  <div class="plan-selection__cards">
+    <div class="plan-card" [class.plan-card--active]="selectedPlan === 'arcade'">
+      <div class="plan-card__icon">
+        <img src="assets/images/icon-arcade.svg" alt="Arcade plan icon">
+      </div>
+      <div class="plan-card__content">
+        <h3 class="plan-card__title">Arcade</h3>
+        <p class="plan-card__price">
+          @if (isYearly) {
+            <span>$90/yr</span>
+            <span class="plan-card__bonus">2 months free</span>
+          } @else {
+            <span>$9/mo</span>
+          }
+        </p>
+      </div>
+    </div>
+
+    <div class="plan-card" [class.plan-card--active]="selectedPlan === 'advanced'">
+      <div class="plan-card__icon">
+        <img src="assets/images/icon-advanced.svg" alt="Advanced plan icon">
+      </div>
+      <div class="plan-card__content">
+        <h3 class="plan-card__title">Advanced</h3>
+        <p class="plan-card__price">
+          @if (isYearly) {
+            <span>$120/yr</span>
+            <span class="plan-card__bonus">2 months free</span>
+          } @else {
+            <span>$12/mo</span>
+          }
+        </p>
+      </div>
+    </div>
+
+    <div class="plan-card" [class.plan-card--active]="selectedPlan === 'pro'">
+      <div class="plan-card__icon">
+        <img src="assets/images/icon-pro.svg" alt="Pro plan icon">
+      </div>
+      <div class="plan-card__content">
+        <h3 class="plan-card__title">Pro</h3>
+        <p class="plan-card__price">
+          @if (isYearly) {
+            <span>$150/yr</span>
+            <span class="plan-card__bonus">2 months free</span>
+          } @else {
+            <span>$15/mo</span>
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="billing-toggle">
+    <span class="billing-toggle__option" [class.billing-toggle__option--active]="!isYearly">Monthly</span>
+    <label class="billing-toggle__switch">
+      <input
+        type="checkbox"
+        [checked]="isYearly"
+        (change)="toggleBilling()"
+        class="billing-toggle__input">
+      <span class="billing-toggle__slider"></span>
+    </label>
+    <span class="billing-toggle__option" [class.billing-toggle__option--active]="isYearly">Yearly</span>
+  </div>
+</div>

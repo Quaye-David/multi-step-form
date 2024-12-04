@@ -42,6 +42,10 @@
 --fs-body-s: 0.75rem;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   margin: 0;

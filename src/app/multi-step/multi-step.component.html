@@ -1,4 +1,60 @@
 <!DOCTYPE html>
-<div>
-  <a routerLink="/landing-page" routerLinkActive="active" ariaCurrentWhenActive="page">To Landing Page</a>
-</div>
+<main class="multi-step">
+  <nav class="multi-step__sidebar" aria-label="Multi-step navigation">
+    <ul class="multi-step__nav-list">
+      @for (step of steps; track step.number) {
+      <a [routerLink]="['step' + step.number]" routerlinkactive="multi-step__nav-item--active">
+        <li class="multi-step__nav-item">
+          <span class="multi-step__step-number">{{step.number}}</span>
+          <div class="multi-step__step-info">
+            <span class="multi-step__step-label">{{step.title}}</span>
+            <span class="multi-step__step-title">{{step.label}}</span>
+          </div>
+        </li>
+      </a>
+      }
+    </ul>
+  </nav>
+
+  <div class="multi-step__content">
+    <div class="multi-step__form-container">
+      <router-outlet/>
+    </div>
+
+    @if (showButtons) {
+      <div class="multi-step__buttons">
+        @if (showBackButton) {
+          <button
+            class="multi-step__button multi-step__button--back"
+            (click)="goBack()">
+            Go Back
+          </button>
+        }
+
+        @if (!isLastStep) {
+          <button
+            class="multi-step__button multi-step__button--next"
+            (click)="goNext()">
+            Next Step
+          </button>
+        } @else {
+          <button
+            class="multi-step__button multi-step__button--confirm"
+            (click)="confirmSubscription()">
+            Confirm
+          </button>
+        }
+      </div>
+    }
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <nav class="footer__nav" aria-label="Footer Navigation">
+    <a class="footer__link" routerLink="/landing-page" routerLinkActive="footer__link--active"
+      ariaCurrentWhenActive="page">
+      To Landing Page
+    </a>
+  </nav>
+</footer>

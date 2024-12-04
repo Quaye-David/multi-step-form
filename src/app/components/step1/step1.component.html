@@ -1,1 +1,56 @@
-<p>step1 works!</p>
+<div class="personal-info">
+  <h2 class="personal-info__title">Personal info</h2>
+  <p class="personal-info__description">
+    Please provide your name, email address, and phone number.
+  </p>
+
+  <form [formGroup]="personalForm" class="personal-info__form">
+    <div class="form-field">
+      <div class="form-field__header">
+        <label for="name" class="form-field__label">Name</label>
+        @if (personalForm.controls['name'].errors?.['required'] && personalForm.controls['name'].touched) {
+          <span class="form-field__error">This field is required</span>
+        }
+      </div>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        class="form-field__input"
+        placeholder="e.g. Stephen King"
+      >
+    </div>
+
+    <div class="form-field">
+      <div class="form-field__header">
+        <label for="email" class="form-field__label">Email Address</label>
+        @if (personalForm.controls['email'].errors?.['required'] && personalForm.controls['email'].touched) {
+          <span class="form-field__error">This field is required</span>
+        }
+      </div>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        class="form-field__input"
+        placeholder="e.g. stephenking@lorem.com"
+      >
+    </div>
+
+    <div class="form-field">
+      <div class="form-field__header">
+        <label for="phone" class="form-field__label">Phone Number</label>
+        @if (personalForm.controls['phone'].errors?.['required'] && personalForm.controls['phone'].touched) {
+          <span class="form-field__error">This field is required</span>
+        }
+      </div>
+      <input
+        id="phone"
+        type="tel"
+        formControlName="phone"
+        class="form-field__input"
+        placeholder="e.g. +1 234 567 890"
+      >
+    </div>
+  </form>
+</div>
