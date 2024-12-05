@@ -11,7 +11,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './step1.component.css'
 })
 export class Step1Component implements OnInit {
+toggleBilling() {
+throw new Error('Method not implemented.');
+}
   personalForm!: FormGroup;
+isYearly: any;
 
   constructor(private fb: FormBuilder) {}
 

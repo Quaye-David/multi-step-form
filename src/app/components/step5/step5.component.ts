@@ -15,8 +15,8 @@ export class Step5Component implements OnInit {
 
   ngOnInit() {
     // Redirect to landing page after 3 seconds
-    setTimeout(() => {
-      this.router.navigate(['/']);
-    }, 3000);
+    // setTimeout(() => {
+    //   this.router.navigate(['/']);
+    // }, 3000);
   }
 }

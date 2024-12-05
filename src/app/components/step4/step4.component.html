@@ -6,18 +6,17 @@
   <div class="summary__content">
     <div class="summary__plan">
       <div class="summary__plan-info">
-        <h3 class="summary__plan-title">
+        <div class="summary__plan-title">
           {{ selectedPlan.name }} ({{ selectedPlan.isYearly ? 'Yearly' : 'Monthly' }})
-        </h3>
+        </div>
         <a routerLink="../step2" class="summary__change-link">Change</a>
       </div>
       <span class="summary__plan-price">
         ${{ selectedPlan.price }}/{{ selectedPlan.isYearly ? 'yr' : 'mo' }}
       </span>
     </div>
-
+    <hr class="summary__divider">
     @if (selectedAddons.length > 0) {
-      <hr class="summary__divider">
       <div class="summary__addons">
         @for (addon of selectedAddons; track addon.name) {
           <div class="summary__addon-item">

@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <main class="multi-step">
+   <!-- multi-step.component.html -->
   <nav class="multi-step__sidebar" aria-label="Multi-step navigation">
     <ul class="multi-step__nav-list">
       @for (step of steps; track step.number) {
-      <a [routerLink]="['step' + step.number]" routerlinkactive="multi-step__nav-item--active">
         <li class="multi-step__nav-item">
-          <span class="multi-step__step-number">{{step.number}}</span>
-          <div class="multi-step__step-info">
-            <span class="multi-step__step-label">{{step.title}}</span>
-            <span class="multi-step__step-title">{{step.label}}</span>
-          </div>
+          <a
+            [routerLink]="['step' + step.number]"
+            routerLinkActive="multi-step__nav-link--active"
+            class="multi-step__nav-link"
+
+          >
+            <span class="multi-step__step-number">{{step.number}}</span>
+            <div class="multi-step__step-info">
+              <span class="multi-step__step-label">{{step.title}}</span>
+              <span class="multi-step__step-title">{{step.label}}</span>
+            </div>
+          </a>
         </li>
-      </a>
       }
     </ul>
   </nav>

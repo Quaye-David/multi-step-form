@@ -42,6 +42,19 @@
   text-decoration: none;
 }
 
+.multi-step__nav-link {
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+}
+
+.multi-step__nav-link--active .multi-step__step-number {
+  background-color: var(--light-blue);
+  color: var(--marine-blue);
+  border-color: transparent;
+}
+
 .multi-step__step-number {
   width: 33px;
   height: 33px;
@@ -87,6 +100,7 @@
   display: flex;
   justify-content: space-between;
   background: var(--white);
+  max-width: 450px;
 }
 
 .multi-step__button {
@@ -115,12 +129,6 @@
   width: 100%;
   padding: 16px;
   text-align: center;
-}
-
-.multi-step__nav-item--active .multi-step__step-number {
-  background-color: var(--light-blue);
-  color: var(--marine-blue);
-  border-color: transparent;
 }
 
 /* Responsive Design */

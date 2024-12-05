@@ -25,6 +25,11 @@ export class MultiStepComponent {
     { number: 4, title: 'Step 4', label: 'Summary' },
   ];
 
+ isStepActive(url: string): boolean {
+  return url.includes('step4') || url.includes('step5');
+}
+
+
   constructor(private router: Router) {
     // Update current step based on URL
     this.router.events.subscribe(() => {
