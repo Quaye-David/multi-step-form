@@ -1,7 +1,8 @@
 // multi-step.component.ts
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet, Router, ActivatedRoute } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormService } from '../services/form-data.interface';
 
 interface Step {
   number: number;
@@ -30,7 +31,9 @@ export class MultiStepComponent {
 }
 
 
-  constructor(private router: Router) {
+  constructor(private readonly router: Router,
+    private formService: FormService)
+   {
     // Update current step based on URL
     this.router.events.subscribe(() => {
       const currentUrl = this.router.url;
@@ -63,8 +66,12 @@ export class MultiStepComponent {
     }
   }
 
+  canNavigateToStep(stepNumber: number): boolean {
+    return this.formService.isStepValid(this.currentStep);
+  }
+
   goNext() {
-    if (this.currentStep < 4) {
+    if (this.currentStep < 4 && this.canNavigateToStep(this.currentStep)) {
       this.currentStep++;
       this.router.navigate(['/multi-step/step' + this.currentStep]);
     }

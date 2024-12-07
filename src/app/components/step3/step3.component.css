@@ -122,3 +122,84 @@
   font-size: var(--fs-body-m);
   font-weight: 500;
 }
+
+@media screen and (max-width: 768px) {
+  .add-ons {
+    width: 100%;
+    margin: 0;
+    padding: 24px 16px;
+  }
+
+  .add-ons__header {
+    margin-bottom: 24px;
+  }
+
+  .add-ons__title {
+    font-size: var(--fs-body-l);
+    margin-bottom: 12px;
+  }
+
+  .add-ons__description {
+    font-size: var(--fs-body-s);
+    line-height: 1.4;
+  }
+
+  .add-ons__list {
+    gap: 12px;
+  }
+
+  .addon-item {
+    padding: 12px 16px;
+  }
+
+  .addon-item__details {
+    gap: 16px;
+  }
+
+  .addon-item__checkbox {
+    width: 18px;
+    height: 18px;
+  }
+
+  .addon-item__checkmark {
+    height: 18px;
+    width: 18px;
+  }
+
+  .addon-item__input:checked ~ .addon-item__checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+  }
+
+  .addon-item__content {
+    gap: 2px;
+  }
+
+  .addon-item__title {
+    font-size: var(--fs-body-s);
+  }
+
+  .addon-item__description {
+    font-size: var(--fs-body-xs);
+  }
+
+  .addon-item__price {
+    font-size: var(--fs-body-s);
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .add-ons {
+    padding: 16px 12px;
+  }
+
+  .addon-item {
+    padding: 10px 12px;
+  }
+
+  .addon-item__details {
+    gap: 12px;
+  }
+}
