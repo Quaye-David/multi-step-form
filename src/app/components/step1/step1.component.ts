@@ -1,49 +1,69 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+// step1.component.ts
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormService } from '../../services/form-data.interface';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormDataService } from '../../services/form-data.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-step1',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './step1.component.html',
-  styleUrl: './step1.component.css',
+  styleUrls: ['./step1.component.css']
 })
-export class Step1Component implements OnInit {
-  toggleBilling() {
-    throw new Error('Method not implemented.');
-  }
+export class Step1Component implements OnInit, OnDestroy {
   personalForm!: FormGroup;
-  isYearly: any;
+  private subscription = new Subscription();
 
   constructor(
-    private readonly fb: FormBuilder,
-    private readonly formService: FormService
+    private fb: FormBuilder,
+    private formDataService: FormDataService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.initForm();
+    // Load data first, then set up validation
+    this.loadSavedData();
+  }
+
+  private initForm(): void {
     this.personalForm = this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.pattern(/^\+?[\d\s-]+$/)]]
     });
+  }
 
-    this.formService.formData$.subscribe((data) => {
-      if (data.personalInfo) {
-        this.personalForm.patchValue(data.personalInfo);
-      }
-    });
+  private loadSavedData(): void {
+    // First load saved data
+    this.subscription.add(
+      this.formDataService.formData$.subscribe(data => {
+        if (data?.personalInfo) {
+          this.personalForm.patchValue(data.personalInfo, { emitEvent: false });
+          // After loading data, set up validation
+          this.setupFormValidation();
+        }
+      })
+    );
+  }
 
-    this.personalForm.valueChanges.subscribe((values) => {
-      if (this.personalForm.valid) {
-        this.formService.updatePersonalInfo(values);
-      }
-    });
+  private setupFormValidation(): void {
+    this.subscription.add(
+      this.personalForm.valueChanges.subscribe(() => {
+        const formValue = this.personalForm.value;
+        this.formDataService.updatePersonalInfo({
+          name: formValue.name || '',
+          email: formValue.email || '',
+          phone: formValue.phone || ''
+        });
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

@@ -24,7 +24,7 @@
     <div class="form-field">
       <div class="form-field__header">
         <label for="email" class="form-field__label">Email Address</label>
-        @if (personalForm.controls['email'].errors?.['required'] && personalForm.controls['email'].touched) {
+        @if (personalForm.controls['email'].errors?.['email'] && personalForm.controls['email'].touched) {
           <span class="form-field__error">This field is required</span>
         }
       </div>
@@ -40,7 +40,7 @@
     <div class="form-field">
       <div class="form-field__header">
         <label for="phone" class="form-field__label">Phone Number</label>
-        @if (personalForm.controls['phone'].errors?.['required'] && personalForm.controls['phone'].touched) {
+        @if (personalForm.controls['phone'].errors?.['pattern'] && personalForm.controls['phone'].touched) {
           <span class="form-field__error">This field is required</span>
         }
       </div>

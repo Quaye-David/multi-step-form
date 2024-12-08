@@ -9,7 +9,7 @@
             [routerLink]="['step' + step.number]"
             routerLinkActive="multi-step__nav-link--active"
             class="multi-step__nav-link"
-
+            [class.disabled]="isMobile && step.number !== currentStep"
           >
             <span class="multi-step__step-number">{{step.number}}</span>
             <div class="multi-step__step-info">
@@ -37,15 +37,19 @@
           </button>
         }
 
-        @if (!isLastStep) {
+        @if (showNextButton) {
           <button
             class="multi-step__button multi-step__button--next"
+            [disabled]="isNextButtonDisabled"
             (click)="goNext()">
             Next Step
           </button>
-        } @else {
+        }
+
+        @if (showConfirmButton) {
           <button
             class="multi-step__button multi-step__button--confirm"
+            [disabled]="isNextButtonDisabled"
             (click)="confirmSubscription()">
             Confirm
           </button>
