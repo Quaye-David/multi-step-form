@@ -122,11 +122,10 @@
   font-weight: 500;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 375px) {
   .add-ons {
     width: 100%;
     margin: 0;
-    padding: 24px 16px;
   }
 
   .add-ons__header {
@@ -134,7 +133,7 @@
   }
 
   .add-ons__title {
-    font-size: var(--fs-body-l);
+    font-size: 24px;
     margin-bottom: 12px;
   }
 
@@ -156,18 +155,18 @@
   }
 
   .addon-item__checkbox {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
   }
 
   .addon-item__checkmark {
-    height: 18px;
-    width: 18px;
+    height: 14px;
+    width: 14px;
   }
 
   .addon-item__input:checked ~ .addon-item__checkmark:after {
-    left: 5px;
-    top: 2px;
+    left: 3px;
+    top: 1px;
     width: 4px;
     height: 8px;
   }
@@ -181,7 +180,7 @@
   }
 
   .addon-item__description {
-    font-size: var(--fs-body-xs);
+    font-size: var(--fs-body-s);
   }
 
   .addon-item__price {
@@ -189,10 +188,7 @@
   }
 }
 
-@media screen and (max-width: 375px) {
-  .add-ons {
-    padding: 16px 12px;
-  }
+/* @media screen and (max-width: 375px) {
 
   .addon-item {
     padding: 10px 12px;
@@ -201,4 +197,4 @@
   .addon-item__details {
     gap: 12px;
   }
-}
+} */

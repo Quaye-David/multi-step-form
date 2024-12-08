@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { FormData } from '../models/form-data.interface';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class FormDataService {
   private formData: FormData = {
     personalInfo: { name: '', email: '', phone: '' },
-    plan: { type: '', isYearly: false }
+    plan: { type: '', isYearly: false, price: 0 },
+    addons: []
   };
 
   private formDataSubject = new BehaviorSubject<FormData>(this.formData);
@@ -20,28 +20,41 @@ export class FormDataService {
   isFormValid$ = this.formValidSubject.asObservable();
 
   constructor() {
-    const savedData = localStorage.getItem('formData');
-    if (savedData) {
-      this.formData = JSON.parse(savedData);
-      this.formDataSubject.next(this.formData);
-      this.validatePersonalInfo();
-    }
+    this.loadFromLocalStorage();
   }
 
   updatePersonalInfo(info: FormData['personalInfo']) {
-    this.formData = {
-      ...this.formData,
-      personalInfo: info
-    };
+    this.formData.personalInfo = info;
     this.formDataSubject.next(this.formData);
+    this.validateForm();
     this.saveToLocalStorage();
-    this.validatePersonalInfo();
   }
 
-  private validatePersonalInfo(): void {
-    const { name, email, phone } = this.formData.personalInfo;
-    const isValid = !!(name && email && phone);
-    this.formValidSubject.next(isValid);
+  updatePlan(plan: FormData['plan']) {
+    this.formData.plan = plan;
+    this.formDataSubject.next(this.formData);
+    this.validateForm();
+    this.saveToLocalStorage();
+  }
+
+  updateAddons(addons: FormData['addons']) {
+    this.formData.addons = addons;
+    this.formDataSubject.next(this.formData);
+    this.validateForm();
+    this.saveToLocalStorage();
+  }
+
+  private loadFromLocalStorage(): void {
+    const savedData = localStorage.getItem('formData');
+    if (savedData) {
+      try {
+        this.formData = JSON.parse(savedData);
+        this.formDataSubject.next(this.formData);
+        this.validateForm();
+      } catch (error) {
+        console.error('Error loading form data:', error);
+      }
+    }
   }
 
   private saveToLocalStorage(): void {
@@ -52,38 +65,10 @@ export class FormDataService {
     }
   }
 
-  async isPersonalInfoValid(): Promise<boolean> {
+  private validateForm(): void {
     const { name, email, phone } = this.formData.personalInfo;
-    return Boolean(name && email && phone);
-  }
-
-  async isPlanSelected(): Promise<boolean> {
-    return Boolean(this.formData.plan.type);
-  }
-
-  async isFormComplete(): Promise<boolean> {
-    const personalInfoValid = await this.isPersonalInfoValid();
-    const planSelected = await this.isPlanSelected();
-    return personalInfoValid && planSelected;
-  }
-
-  validateForm(): void {
-    this.isPersonalInfoValid().then(isValid => {
-      this.formValidSubject.next(isValid);
-    });
-  }
-
-  private loadFromLocalStorage(): void {
-    const savedData = localStorage.getItem('formData');
-    if (savedData) {
-      try {
-        this.formData = JSON.parse(savedData);
-        this.formDataSubject.next(this.formData);
-        this.validatePersonalInfo();
-      } catch (error) {
-        console.error('Error loading form data:', error);
-        localStorage.removeItem('formData');
-      }
-    }
+    const isPersonalValid = Boolean(name && email && phone);
+    const isPlanValid = Boolean(this.formData.plan.type);
+    this.formValidSubject.next(isPersonalValid && isPlanValid);
   }
 }
