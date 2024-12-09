@@ -40,4 +40,6 @@
       </div>
     }
   </div>
+  <app-navigation-buttons [showBackButton]="true" [showNextButton]="true" [isNextDisabled]="!selectedAddons.length"
+    (onBack)="goBack()" (onNext)="goNext()" />
 </div>

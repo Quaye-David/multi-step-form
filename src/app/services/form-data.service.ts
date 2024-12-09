@@ -65,6 +65,20 @@ export class FormDataService {
     }
   }
 
+  clearStorage(): void {
+    try {
+      localStorage.removeItem('formData');
+      this.formData = {
+        personalInfo: { name: '', email: '', phone: '' },
+        plan: { type: '', isYearly: false, price: 0 },
+        addons: []
+      };
+      this.formDataSubject.next(this.formData);
+    } catch (error) {
+      console.error('Error clearing storage:', error);
+    }
+  }
+
   private validateForm(): void {
     const { name, email, phone } = this.formData.personalInfo;
 

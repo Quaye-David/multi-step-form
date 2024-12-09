@@ -1,159 +1,248 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #333;
+/* landing-page.component.css */
+:root {
+  --gradient-1: #4158D0;
+  --gradient-2: #C850C0;
+  --gradient-3: #FFCC70;
+  --accent: #7C3AED;
+  --text: #1F2937;
+  --background: #F9FAFB;
+}
+
+.landing {
+  min-height: 100vh;
+  background: var(--background);
 }
 
 /* Hero Section */
 .hero {
   position: relative;
-  text-align: center;
-  color: white;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
 }
 
 .hero__background {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
+  inset: 0;
+  z-index: 0;
 }
 
-.hero__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.hero__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    var(--gradient-1),
+    var(--gradient-2),
+    var(--gradient-3)
+  );
+  opacity: 0.1;
+  animation: gradient 15s ease infinite;
+}
+
+.hero__shapes .shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.shape--1 {
+  background: var(--gradient-1);
+  width: 300px;
+  height: 300px;
+  top: 20%;
+  left: 10%;
+  opacity: 0.2;
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape--2 {
+  background: var(--gradient-2);
+  width: 200px;
+  height: 200px;
+  top: 40%;
+  right: 15%;
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape--3 {
+  background: var(--gradient-3);
+  width: 250px;
+  height: 250px;
+  bottom: 15%;
+  left: 30%;
+  opacity: 0.1;
+  animation: float 7s ease-in-out infinite;
 }
 
 .hero__content {
-  padding: 50px 20px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
 }
 
-.hero__tagline {
-  font-size: 2.5em;
-  margin: 0.5em 0;
+.hero__title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: var(--text);
 }
 
-.hero__description {
-  font-size: 1.2em;
-  margin-bottom: 20px;
+.hero__title-line {
+  display: block;
 }
 
-.hero__sign-up-button {
-  background-color: #ff4081;
+.hero__subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text);
+  opacity: 0.8;
+  margin-bottom: 2.5rem;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
   color: white;
-  padding: 15px 30px;
-  border: none;
-  border-radius: 5px;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  font-weight: 600;
   text-decoration: none;
-  font-size: 1.2em;
-  transition: background-color 0.3s;
+  transition: transform 0.2s;
 }
 
-.hero__sign-up-button:hover {
-  background-color: #ff1c5e;
+.hero__cta:hover {
+  transform: translateY(-2px);
+}
+
+.hero__cta-arrow {
+  transition: transform 0.2s;
+}
+
+.hero__cta:hover .hero__cta-arrow {
+  transform: translateX(4px);
 }
 
 /* Features Section */
 .features {
-  text-align: center;
-  padding: 50px 20px;
-  background-color: #f4f4f4;
+  padding: 6rem 2rem;
 }
 
-.features__title {
-  font-size: 2em;
-  margin-bottom: 20px;
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.features__list {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.features__item {
+.feature {
   background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border-radius: 20px;
   text-align: center;
+  transition: transform 0.2s;
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
 }
 
-.features__icon {
-  font-size: 3em;
-  margin-bottom: 10px;
+.feature:hover {
+  transform: translateY(-5px);
 }
 
-.features__text {
-  font-size: 1.1em;
+.feature__icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-/* Testimonials Section */
-.testimonials {
+.feature__title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.feature__text {
+  color: var(--text);
+  opacity: 0.7;
+}
+
+/* CTA Section */
+.cta {
+  background: linear-gradient(45deg, var(--gradient-1), var(--gradient-2));
+  padding: 6rem 2rem;
   text-align: center;
-  padding: 50px 20px;
-  background-color: #fff;
-}
-
-.testimonials__title {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-.testimonials__item {
-  margin: 20px 0;
-}
-
-.testimonials__quote {
-  font-size: 1.2em;
-  font-style: italic;
-}
-
-.testimonials__rating {
-  font-size: 1.5em;
-}
-
-/* Call to Action Section */
-.call-to-action {
-  text-align: center;
-  padding: 50px 20px;
-  background-color: #ff4081;
   color: white;
 }
 
-.call-to-action__title {
-  font-size: 2em;
-  margin-bottom: 20px;
+.cta__content {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.call-to-action__sign-up-button {
-  background-color: white;
-  color: #ff4081;
-  padding: 15px 30px;
-  border: none;
-  border-radius: 5px;
+.cta__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.cta__text {
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta__button {
+  display: inline-block;
+  background: white;
+  color: var(--accent);
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  font-weight: 600;
   text-decoration: none;
-  font-size: 1.2em;
-  transition: background-color 0.3s, color 0.3s;
+  transition: transform 0.2s;
 }
 
-.call-to-action__sign-up-button:hover {
-  background-color: #ff1c5e;
-  color: white;
+.cta__button:hover {
+  transform: translateY(-2px);
 }
 
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #333;
-  color: white;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
-.footer__text {
-  margin: 0;
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 80vh;
+    padding: 4rem 1rem;
+  }
+
+  .features {
+    padding: 4rem 1rem;
+  }
+
+  .cta {
+    padding: 4rem 1rem;
+  }
 }

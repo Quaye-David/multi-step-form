@@ -1,22 +1,29 @@
 // step5.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
+// step5.component.ts
 @Component({
   selector: 'app-step5',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './step5.component.html',
-  styleUrl: './step5.component.css'
+  templateUrl: './step5.component.html'
 })
-export class Step5Component implements OnInit {
-  constructor(private router: Router) {}
+export class Step5Component implements OnInit, OnDestroy {
+  private timeoutId?: number;
 
-  ngOnInit() {
-    // Redirect to landing page after 3 seconds
-    // setTimeout(() => {
-    //   this.router.navigate(['/']);
-    // }, 3000);
+  constructor(private readonly router: Router) {}
+
+  ngOnInit(): void {
+    this.timeoutId = window.setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 3000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
   }
 }
