@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NavigationButtonsComponent } from '../navigation-buttons/navigation-buttons.component';
 
 interface Addon {
   id: string;
@@ -15,7 +16,7 @@ interface Addon {
 @Component({
   selector: 'app-step3',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NavigationButtonsComponent],
   templateUrl: './step3.component.html',
   styleUrl: './step3.component.css'
 })
