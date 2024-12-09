@@ -1,70 +1,26 @@
 <!DOCTYPE html>
 <main class="multi-step">
-   <!-- multi-step.component.html -->
-  <nav class="multi-step__sidebar" aria-label="Multi-step navigation">
-    <ul class="multi-step__nav-list">
-      @for (step of steps; track step.number) {
-        <li class="multi-step__nav-item">
-          <a
-            [routerLink]="['step' + step.number]"
-            routerLinkActive="multi-step__nav-link--active"
-            class="multi-step__nav-link"
-            [class.disabled]="isMobile && step.number !== currentStep"
-          >
-            <span class="multi-step__step-number">{{step.number}}</span>
-            <div class="multi-step__step-info">
-              <span class="multi-step__step-label">{{step.title}}</span>
-              <span class="multi-step__step-title">{{step.label}}</span>
-            </div>
-          </a>
-        </li>
-      }
-    </ul>
-  </nav>
+  <app-step-sidebar
+    [steps]="steps"
+    [currentStep]="currentStep"
+    [isMobile]="isMobile"
+  />
 
   <div class="multi-step__content">
     <div class="multi-step__form-container">
       <router-outlet/>
     </div>
 
-    @if (showButtons) {
-      <div class="multi-step__buttons">
-        @if (showBackButton) {
-          <button
-            class="multi-step__button multi-step__button--back"
-            (click)="goBack()">
-            Go Back
-          </button>
-        }
-
-        @if (showNextButton) {
-          <button
-            class="multi-step__button multi-step__button--next"
-            [disabled]="isNextButtonDisabled"
-            (click)="goNext()">
-            Next Step
-          </button>
-        }
-
-        @if (showConfirmButton) {
-          <button
-            class="multi-step__button multi-step__button--confirm"
-            [disabled]="isNextButtonDisabled"
-            (click)="confirmSubscription()">
-            Confirm
-          </button>
-        }
-      </div>
-    }
+    <!-- @if (showButtons) {
+      <app-navigation-buttons
+        [showBackButton]="showBackButton"
+        [showNextButton]="showNextButton"
+        [showConfirmButton]="showConfirmButton"
+        [isNextDisabled]="isNextButtonDisabled"
+        (onBack)="goBack()"
+        (onNext)="goNext()"
+        (onConfirm)="confirmSubscription()"
+      />
+    } -->
   </div>
 </main>
-
-<!-- Footer -->
-<!-- <footer class="footer">
-  <nav class="footer__nav" aria-label="Footer Navigation">
-    <a class="footer__link" routerLink="/landing-page" routerLinkActive="footer__link--active"
-      ariaCurrentWhenActive="page">
-      To Landing Page
-    </a>
-  </nav>
-</footer> -->

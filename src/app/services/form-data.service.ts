@@ -67,8 +67,19 @@ export class FormDataService {
 
   private validateForm(): void {
     const { name, email, phone } = this.formData.personalInfo;
-    const isPersonalValid = Boolean(name && email && phone);
+
+    // Validate personal info
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?[\d\s-]+$/;
+
+    const isPersonalValid = Boolean(
+      name?.length >= 2 &&
+      RegExp(emailRegex).exec(email) &&
+      RegExp(phoneRegex).exec(phone)
+    );
+
     const isPlanValid = Boolean(this.formData.plan.type);
+
     this.formValidSubject.next(isPersonalValid && isPlanValid);
   }
 }

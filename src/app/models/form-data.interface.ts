@@ -6,7 +6,7 @@ export interface FormData {
     phone: string;
   };
   plan: {
-    type: 'arcade' | 'advanced' | 'pro' | '';
+    type: PlanType;
     isYearly: boolean;
     price: number;
   };
@@ -17,3 +17,4 @@ export interface FormData {
     selected: boolean;
   }[];
 }
+type PlanType = '' | 'arcade' | 'advanced' | 'pro';

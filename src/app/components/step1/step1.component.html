@@ -8,8 +8,14 @@
     <div class="form-field">
       <div class="form-field__header">
         <label for="name" class="form-field__label">Name</label>
-        @if (personalForm.controls['name'].errors?.['required'] && personalForm.controls['name'].touched) {
-          <span class="form-field__error">This field is required</span>
+        @if (personalForm.get('name')?.errors && personalForm.get('name')?.touched) {
+          <span class="form-field__error">
+            @if (personalForm.get('name')?.errors?.['required']) {
+              Name is required
+            } @else if (personalForm.get('name')?.errors?.['minlength']) {
+              Name must be at least 2 characters
+            }
+          </span>
         }
       </div>
       <input
@@ -24,9 +30,15 @@
     <div class="form-field">
       <div class="form-field__header">
         <label for="email" class="form-field__label">Email Address</label>
-        @if (personalForm.controls['email'].errors?.['email'] && personalForm.controls['email'].touched) {
-          <span class="form-field__error">This field is required</span>
-        }
+       @if (personalForm.get('email')?.errors && personalForm.get('email')?.touched) {
+          <span class="form-field__error">
+            @if (personalForm.get('email')?.errors?.['required']) {
+              Email is required
+            } @else if (personalForm.get('email')?.errors?.['email']) {
+              Email must be a valid email address
+            }
+          </span>
+       }
       </div>
       <input
         id="email"
@@ -40,8 +52,14 @@
     <div class="form-field">
       <div class="form-field__header">
         <label for="phone" class="form-field__label">Phone Number</label>
-        @if (personalForm.controls['phone'].errors?.['pattern'] && personalForm.controls['phone'].touched) {
-          <span class="form-field__error">This field is required</span>
+        @if (personalForm.get('phone')?.errors && personalForm.get('phone')?.touched) {
+          <span class="form-field__error">
+            @if (personalForm.get('phone')?.errors?.['required']) {
+              Phone number is required
+            } @else if (personalForm.get('phone')?.errors?.['pattern']) {
+              Phone number must be a valid phone number
+            }
+          </span>
         }
       </div>
       <input
@@ -53,4 +71,9 @@
       >
     </div>
   </form>
+  <app-navigation-buttons
+  [showNextButton]="true"
+  [isNextDisabled]="!personalForm.valid"
+  (onNext)="goNext()"
+/>
 </div>
