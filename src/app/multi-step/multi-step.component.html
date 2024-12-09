@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <main class="multi-step">
+  <button
+  class="multi-step__close-button"
+  (click)="handleClose()"
+  aria-label="Close form"
+>
+  ✕
+</button>
   <app-step-sidebar
     [steps]="steps"
     [currentStep]="currentStep"

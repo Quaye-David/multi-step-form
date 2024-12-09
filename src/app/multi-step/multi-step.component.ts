@@ -3,15 +3,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { StepSidebarComponent } from '../components/step-sidebar/step-sidebar.component';
-
+import { FormDataService } from '../services/form-data.service';
 @Component({
   selector: 'app-multi-step',
   standalone: true,
   imports: [RouterOutlet, StepSidebarComponent],
-  templateUrl: './multi-step.component.html',
+templateUrl: './multi-step.component.html',
   styleUrls: ['./multi-step.component.css']
 })
-export class MultiStepComponent implements OnInit, OnDestroy {
+export class MultiStepComponent implements OnDestroy {
   currentStep = 1;
   isMobile = window.innerWidth < 768;
   isThankYouPage = false;
@@ -24,8 +24,9 @@ export class MultiStepComponent implements OnInit, OnDestroy {
     { number: 4, title: 'Summary', label: 'Step 4' },
   ];
 
-  constructor(private readonly router: Router) {
-    // Keep URL sync with step tracking
+  constructor(private readonly router: Router,
+    private readonly FormDataService: FormDataService
+  ) {
     this.subscription.add(
       this.router.events
         .pipe(filter(event => event instanceof NavigationEnd))
@@ -40,8 +41,9 @@ export class MultiStepComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit(): void {
-    // Component initialization if needed
+ async handleClose(): Promise<void> {
+    this.FormDataService.clearStorage();
+    await this.router.navigate(['/']);
   }
 
   ngOnDestroy(): void {

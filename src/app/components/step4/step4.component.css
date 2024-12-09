@@ -51,6 +51,10 @@
     cursor: pointer;
 }
 
+.summary__change-link:hover {
+    color: var(--purple);
+}
+
 .summary__divider {
     border-top: 1px solid var(--light-grey);
     margin: 24px 0;

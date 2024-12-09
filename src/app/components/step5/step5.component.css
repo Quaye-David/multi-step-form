@@ -1,12 +1,13 @@
 .thank-you {
   display: grid;
-  place-items: center;
   height: 100%;
 }
 
 .thank-you__content {
   text-align: center;
-  max-width: 450px;
+  width: 450px;
+  height: auto;
+  margin: 0 auto;
 }
 
 .thank-you__icon {

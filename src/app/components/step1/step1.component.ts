@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class Step1Component implements OnInit, OnDestroy {
   personalForm!: FormGroup;
+  formSubmitted = false;
   private readonly subscription = new Subscription();
   private isLoadingData = false;
 
@@ -71,6 +72,14 @@ export class Step1Component implements OnInit, OnDestroy {
   }
 
   async goNext(): Promise<void> {
+    this.formSubmitted = true;
+
+    // Mark all fields as touched
+    Object.keys(this.personalForm.controls).forEach(key => {
+      const control = this.personalForm.get(key);
+      control?.markAsTouched();
+    });
+
     if (this.personalForm.valid) {
       await this.router.navigate(['/multi-step/step2']);
     }

@@ -43,6 +43,25 @@
   font-size: var(--fs-body-s);
 }
 
+.form-field__input.ng-invalid.ng-touched {
+  border-color: var(--red-errors);
+  outline: none;
+}
+
+.form-field__input.ng-invalid.ng-touched:focus {
+  border-color: var(--red-errors);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.form-field__input.ng-invalid.ng-touched {
+  animation: shake 0.2s ease-in-out;
+}
+
 .form-field__input {
   padding: 12px 16px;
   border: 1px solid var(--border-color);
