@@ -18,17 +18,3 @@ export interface FormData {
   }[];
 }
 type PlanType = '' | 'arcade' | 'advanced' | 'pro';
-
-export enum ButtonType {
-  BACK = 'back',
-  NEXT = 'next',
-  CONFIRM = 'confirm'
-}
-
-export interface NavigationButton {
-  type: ButtonType;
-  label: string;
-  visible: boolean;
-  disabled?: boolean;
-  className: string;
-}

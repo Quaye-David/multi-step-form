@@ -1,10 +1,13 @@
 <div class="personal-info">
-  <div class="personal-info__title">Personal info</div>
-  <p class="personal-info__description">
-    Please provide your name, email address, and phone number.
-  </p>
+  <div class="personal-info__container">
+    <div>
+      <h1 class="personal-info__title">Personal info</h1>
+      <p class="personal-info__description">
+        Please provide your name, email address, and phone number.
+      </p>
+    </div>
 
-  <form [formGroup]="personalForm" class="personal-info__form">
+    <form [formGroup]="personalForm" class="personal-info__form">
     <div class="form-field">
       <div class="form-field__header">
         <label for="name" class="form-field__label">Name</label>
@@ -59,5 +62,6 @@
         placeholder="e.g. +1 234 567 890">
     </div>
   </form>
+</div>
   <app-navigation-buttons [showNextButton]="true" (onNext)="goNext()" />
 </div>
