@@ -1,6 +1,8 @@
 .thank-you {
+  max-width: 480px;
   display: grid;
   height: 100%;
+  align-content: center;
 }
 
 .thank-you__content {

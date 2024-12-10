@@ -1,6 +1,15 @@
 .plan-selection {
-  max-width: 450px;
-  max-height: 348px;
+  max-width: 480px;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 2rem;
+}
+
+.plan-selection__container {
+  margin: 0 auto;
+  width: 100%;
+  align-content: center;
 }
 
 .plan-selection__title {

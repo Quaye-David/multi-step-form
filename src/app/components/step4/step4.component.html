@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <div class="summary">
+  <div class="summary__container">
   <span class="summary__title">Finishing up</span>
   <p class="summary__description">Double-check everything looks OK before confirming.</p>
 
@@ -38,6 +39,7 @@
         {{ totalPrice | currency:'USD':'symbol-narrow' }}/{{ selectedPlan.isYearly ? 'yr' : 'mo' }}
       </span>
   </div>
+</div>
 
   <app-navigation-buttons
     [showBackButton]="true"

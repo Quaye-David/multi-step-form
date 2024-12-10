@@ -1,5 +1,6 @@
 <!-- step2.component.html -->
 <div class="plan-selection">
+  <div class="plan-selection__container">
   <span class="plan-selection__title">Select your plan</span>
   <p class="plan-selection__description">You have the option of monthly or yearly billing.</p>
 
@@ -33,6 +34,8 @@
     </label>
     <span class="billing-toggle__option" [class.billing-toggle__option--active]="isYearly">Yearly</span>
   </div>
+</div>
+
 
   <app-navigation-buttons [showBackButton]="true" [showNextButton]="true" [isNextDisabled]="!selectedPlan"
     (onBack)="goBack()" (onNext)="goNext()" />

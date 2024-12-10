@@ -1,4 +1,5 @@
 <div class="add-ons">
+  <div class="add-ons__container">
   <div class="add-ons__header">
     <span class="add-ons__title">Pick add-ons</span>
     <p class="add-ons__description">Add-ons help enhance your gaming experience.</p>
@@ -40,6 +41,7 @@
       </div>
     }
   </div>
+</div>
   <app-navigation-buttons [showBackButton]="true" [showNextButton]="true" [isNextDisabled]="!selectedAddons.length"
     (onBack)="goBack()" (onNext)="goNext()" />
 </div>

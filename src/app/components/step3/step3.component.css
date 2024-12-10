@@ -1,6 +1,16 @@
 /* step3.component.css */
 .add-ons {
-  width: 450px;
+  max-width: 480px;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 2rem;
+}
+
+.add-ons__container {
+  margin: 0 auto;
+  width: 100%;
+  align-content: center;
 }
 
 .add-ons__header {
