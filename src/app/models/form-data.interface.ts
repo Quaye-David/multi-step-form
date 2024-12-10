@@ -17,4 +17,4 @@ export interface FormData {
     selected: boolean;
   }[];
 }
-type PlanType = '' | 'arcade' | 'advanced' | 'pro';
+export type PlanType = '' | 'arcade' | 'advanced' | 'pro' | 'basic' | 'Premium';
