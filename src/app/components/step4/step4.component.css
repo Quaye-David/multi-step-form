@@ -1,10 +1,11 @@
 /* step4.component.css */
 .summary {
     max-width: 480px;
-    min-height: 100%;
+    min-height: auto;
     display: grid;
     grid-template-rows: 1fr auto;
     gap: 2rem;
+    padding-top: 4rem;
 }
 
 .summary__container {
@@ -109,4 +110,21 @@
     color: var(--purple);
     font-size: var(--fs-body-l);
     font-weight: 700;
+}
+
+@media screen and (max-width: 376px) {
+  .summary__container{
+    padding: 24px;
+    background-color: var(--white);
+    border-radius: 8px;
+  }
+
+  .navigation-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+  }
 }
