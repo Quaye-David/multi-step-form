@@ -145,11 +145,20 @@
   font-weight: bold;
 }
 
-.multi-step__button--next,
-.multi-step__button--confirm {
+.multi-step__button--next{
   background: var(--denim);
   color: var(--white);
   border: none;
+}
+
+.multi-step__button--confirm {
+  background: var(--purple);
+  color: var(--white);
+  border: none;
+}
+
+.multi-step__button--confirm:hover {
+  background: #928CFF;
 }
 
 /* Responsive Design */
