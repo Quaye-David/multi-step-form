@@ -1,6 +1,9 @@
 .thank-you {
+  max-width: 480px;
   display: grid;
   height: 100%;
+  align-content: center;
+  padding-top: 4rem;
 }
 
 .thank-you__content {
@@ -36,4 +39,37 @@
 
 .thank-you__email:hover {
   color: var(--purple);
+}
+
+@media screen and (max-width: 376px) {
+  .thank-you {
+    max-width: 100%;
+    padding: 24px;
+    background-color: var(--white);
+    border-radius: 8px;
+  }
+
+  .thank-you__content {
+    width: 100%;
+
+  }
+
+  .thank-you__icon {
+    margin-bottom: 24px;
+  }
+
+  .thank-you__title {
+    font-size: calc(var(--fs-heading) * 0.9);
+    margin-bottom: 12px;
+  }
+
+  .thank-you__message {
+    font-size: calc(var(--fs-body-l) * 0.95);
+    line-height: 1.4rem;
+  }
+
+  .thank-you__image {
+    max-width: 80%;
+    height: auto;
+  }
 }
